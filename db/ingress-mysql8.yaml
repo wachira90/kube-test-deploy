@@ -8,13 +8,13 @@ metadata:
 spec:
   ingressClassName: public
   rules:
-  - host: xxxx-dbadmin.27-254-47-39.nip.io
-    http:
-      paths:
-      - backend:
-          service:
-            name: mysql-phpmyadmin
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
+    - host: xxxx-dbadmin.27-254-47-39.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: mysql-phpmyadmin
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix

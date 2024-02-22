@@ -100,12 +100,10 @@ spec:
         app.kubernetes.io/instance: mysql
     spec:
       serviceAccountName: default
-      securityContext:
-        {}
+      securityContext: {}
       containers:
         - name: phpmyadmin
-          securityContext:
-            {}
+          securityContext: {}
           image: "docker.io/library/phpmyadmin:5.2.1-apache"
           imagePullPolicy: IfNotPresent
           ports:
@@ -141,9 +139,9 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchLabels:
-                  app: mysql
-              topologyKey: topology.kubernetes.io/zone
-            weight: 100
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: mysql
+                topologyKey: topology.kubernetes.io/zone
+              weight: 100

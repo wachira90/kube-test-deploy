@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-mysql
+  labels:
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: docker.io/library/mysql:8.0.34
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: Test12344321
+            - name: MYSQL_DATABASE
+              value: phpmyadmin
+            - name: MYSQL_USER
+              value: sysdba
+            - name: MYSQL_PASSWORD
+              value: Test12344321
+          ports:
+            - containerPort: 3306
+          resources:
+            limits:
+              cpu: 800m
+              memory: 768Mi
+            requests:
+              cpu: 400m
+              memory: 512Mi
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+            - name: mysql-config-volume
+              mountPath: /etc/mysql/conf.d/default_auth.cnf
+              subPath: default_auth
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
+        - name: mysql-config-volume
+          configMap:
+            name: mysql-config
