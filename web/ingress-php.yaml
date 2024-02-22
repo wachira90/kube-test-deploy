@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  labels:
+    layer: frontend
+    run: php8-nginx
+  name: php8-ingress
+spec:
+  ingressClassName: public
+  rules:
+    - host: devphp8.easysoft.in.th
+      http:
+        paths:
+          - backend:
+              service:
+                name: php8-nginx
+                port:
+                  number: 80
+            path: /
+            pathType: Exact

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-php8-phpfpm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: php8-phpfpm
+  template:
+    metadata:
+      labels:
+        run: php8-phpfpm
+    spec:
+      containers:
+        - image: docker.io/php:8.2.13-fpm-alpine3.18
+          imagePullPolicy: IfNotPresent
+          name: php8-phpfpm
+          ports:
+            - containerPort: 9000
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 300m
+              memory: 256Mi
+            requests:
+              cpu: 150m
+              memory: 128Mi
+          volumeMounts:
+            - mountPath: /var/www/html/
+              name: contents
+      volumes:
+        - hostPath:
+            path: /mnt/data/tewin/devphp8
+            type: Directory
+          name: contents
