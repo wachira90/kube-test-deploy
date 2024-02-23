@@ -6,9 +6,9 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 128m
     nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
 spec:
-  ingressClassName: public
+  ingressClassName: nginx
   rules:
-    - host: xxxx-dbadmin.27-254-47-39.nip.io
+    - host: dbadmin.203-154-208-121.nip.io
       http:
         paths:
           - backend:
