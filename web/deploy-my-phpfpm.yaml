@@ -21,11 +21,11 @@ spec:
               protocol: TCP
           resources:
             limits:
-              cpu: 300m
-              memory: 256Mi
+              cpu: "8"
+              memory: 12Gi
             requests:
-              cpu: 150m
-              memory: 128Mi
+              cpu: "4"
+              memory: 6Gi
           volumeMounts:
             - mountPath: /var/www/html/
               name: contents

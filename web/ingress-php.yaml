@@ -8,9 +8,9 @@ metadata:
     run: php8-nginx
   name: php8-ingress
 spec:
-  ingressClassName: public
+  ingressClassName: nginx
   rules:
-    - host: devphp8.easysoft.in.th
+    - host: test.203-154-208-121.nip.io
       http:
         paths:
           - backend:
